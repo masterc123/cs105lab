@@ -82,35 +82,98 @@
         background-color: #c82333;
     }
 </style>
+<script>
+var num1 = "";
+var operator = "";
+var num2 = "";
 
+function addvalue(number){
+   var display = document.getElementById("display");
+   
+   // Clear the default "0" before adding new numbers
+   if (display.innerText === "0") {
+       display.innerText = "";
+   }
+   
+   display.innerText += number;
+
+   // Fixed the bitwise OR (|) to logical OR (||)
+   if (number === "+" || number === "-" || number === "*" || number === "/"){
+	   operator = number;
+   }
+   else if (operator === ""){
+       num1 += number;
+   }
+   else{
+       num2 += number;
+   }
+
+   console.log(num1);
+   console.log(operator);
+   console.log(num2);
+}
+
+function dclear(){
+   var display = document.getElementById("display");
+   display.innerText = "0"; // Resetting back to 0 looks cleaner
+   num1 = "";
+   num2 = "";
+   operator = "";
+}
+
+function dequal(){
+   var display = document.getElementById("display");
+   var result = 0;
+   
+   // Switched parseInt to parseFloat so decimal math works properly
+   if (operator === "+"){
+      result = parseFloat(num1) + parseFloat(num2);
+   }
+   else if (operator === "-"){
+      result = parseFloat(num1) - parseFloat(num2);
+   }
+   else if (operator === "/"){
+      result = parseFloat(num1) / parseFloat(num2);
+   }
+   else if (operator === "*"){
+      result = parseFloat(num1) * parseFloat(num2);
+   }
+
+   display.innerText = result;
+   num1 = result.toString();
+   num2 = "";
+   operator = "";
+}
+</script>
 </head>
 <body>
 <div class="calculator">
-    <div class="display">0</div>
+    <div class="display" id="display">0</div>
     <div class="buttons">
         <div></div>
-        <button class="clear-all">CE</button>
-        <button class="clear">C</button>
-        <button class="operator">/</button>
+        <button class="clear" onclick="dclear()">CE</button>
+        <button class="clear" onclick="dclear()">C</button>
+        <button onclick="addvalue('/')" class="operator">/</button>
 
-        <button>7</button>
-        <button>8</button>
-        <button>9</button>
-        <button class="operator">*</button>
+        <button onclick="addvalue('7')">7</button>
+        <button onclick="addvalue('8')">8</button>
+        <button onclick="addvalue('9')">9</button>
+        <button onclick="addvalue('*')" class="operator">*</button>
 
-        <button>4</button>
-        <button>5</button>
-        <button>6</button>
-        <button class="operator">+</button>
+        <button onclick="addvalue('4')">4</button>
+        <button onclick="addvalue('5')">5</button>
+        <button onclick="addvalue('6')">6</button>
+        <button onclick="addvalue('+')" class="operator">+</button>
 
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button class="operator">-</button>
-        <button>0</button>
-        <button>.</button>
+        <button onclick="addvalue('1')">1</button>
+        <button onclick="addvalue('2')">2</button>
+        <button onclick="addvalue('3')">3</button>
+        <button onclick="addvalue('-')" class="operator">-</button>
         
-        <button class="equals">=</button>
+        <button onclick="addvalue('0')">0</button>
+        <button onclick="addvalue('.')">.</button>
+        
+        <button onclick="dequal()" class="equals">=</button>
     </div>
 </div>
 </body>
