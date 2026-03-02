@@ -1,0 +1,111 @@
+    <style>
+        body {
+            font-family: 'Roboto', Times, serif;
+            text-align: center;
+    <style>
+        body {
+            font-family: 'Roboto', Times, serif;
+            text-align: center;
+            align-items: center;
+            font-size: large;
+            cursor: pointer;
+            background-color: gray;
+        padding: 50px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        div {
+            margin: 0px auto;
+            border-collapse: collapse;
+        }
+        .box {
+            margin: 0px 3px;
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            background-color: red;
+            cursor: pointer;
+        }
+        .box:hover {
+            background-color: white;
+            cursor: pointer;
+        }
+        .reset {
+            width: 100px;
+            height: 70px;
+            margin: 30px;
+            border-radius: 10px;
+            background-color: yellow;
+            cursor: pointer;
+            text-align: center;
+            align-items: center;
+        }
+  h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 20px;
+  }
+
+  form {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 2px solid #ccc;
+  }
+  label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+    color: #333;
+  }
+
+    </style>
+<body>
+
+<br>
+ <input type="text" id="name" name="name" placeholder="Product" required>
+ <input type="number" id="price" name="price" placeholder="Price" required>
+ <input type="number" id="stock" name="stock" placeholder="Stock" required>
+  <button onclick="additem()">Add Item</button>
+ <br>
+  <h1>Product:</h1>
+  <div id="table"></div>
+
+</body>
+<script>
+
+function additem(){
+   var table = document.getElementById("table");
+   var Product = document.getElementById("name");
+   var Price = document.getElementById("price");
+   var Stock = document.getElementById("stock");
+   if (Product.value != "" && Price.value != "" && Stock.value != "") {
+   
+             if (Stock.value <= 0) {
+       	  		 
+                table.innerHTML += `<pre>${Product.value}          ${Price.value}          <font color="red">Out of Stock</font></pre>`;
+             } else {
+                table.innerHTML += `<pre>${Product.value}          ${Price.value}          ${Stock.value}</pre>`;
+               
+             }
+   }
+
+}
+
+function prefillitem(Product,Price,Stock){
+   var table = document.getElementById("table");
+
+             if (Stock <= 0) {
+       	  		 
+                table.innerHTML += `<pre>${Product}          ${Price}          <font color="red">Out of Stock</font></pre>`;
+             } else {
+                table.innerHTML += `<pre>${Product}          ${Price}          ${Stock}</pre>`;
+             }
+   
+
+}
+prefillitem("Product","4","45")
+prefillitem("Chocolate","41","45")
+</script>
+
